@@ -10,8 +10,8 @@ Jardin::Jardin(char const *file, QWidget * parent)
     connect(render, SIGNAL(sizeFenetre(int, int)), this, SLOT(tailleFenetre(int, int)));
     render->construction(file);
     this->setFixedSize(render->tailleJardin().width()*35,render->tailleJardin().height()*35);
-    mur = QPixmap("../GUI/IMG/mur.jpg");
-    vide = QPixmap("../GUI/IMG/vide.jpg");
+    mur = QPixmap("../../../../GUI/IMG/mur.jpg");
+    vide = QPixmap("../../../../GUI/IMG/vide.jpg");
     Terrain = new QImage(render->tailleJardin().width()*35,render->tailleJardin().height()*35, QImage::Format_RGB32); //QImage::Format_Mono);
     Terrain->fill(Qt::white);
 }
