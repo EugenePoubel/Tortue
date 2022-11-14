@@ -661,7 +661,7 @@ namespace yy {
           switch (yyn)
             {
   case 2: // $@1: %empty
-#line 44 "../parser/parser.yy"
+#line 45 "../parser/parser.yy"
               {
         std::cout << "nombre : " << yystack_[1].value.as < int > () << std::endl;
         driver.setVariable("a",yystack_[1].value.as < int > ());
@@ -670,16 +670,24 @@ namespace yy {
 #line 671 "parser.cc"
     break;
 
-  case 4: // programme: END NL
-#line 49 "../parser/parser.yy"
-             {
-        YYACCEPT;
+  case 4: // $@2: %empty
+#line 51 "../parser/parser.yy"
+                {
+        std::cout<< "test";
     }
 #line 679 "parser.cc"
     break;
 
+  case 6: // programme: END NL
+#line 54 "../parser/parser.yy"
+             {
+        YYACCEPT;
+    }
+#line 687 "parser.cc"
+    break;
 
-#line 683 "parser.cc"
+
+#line 691 "parser.cc"
 
             default:
               break;
@@ -872,62 +880,65 @@ namespace yy {
 
 
 
-  const signed char  Parser ::yypact_ninf_ = -5;
+  const signed char  Parser ::yypact_ninf_ = -7;
 
   const signed char  Parser ::yytable_ninf_ = -1;
 
   const signed char
    Parser ::yypact_[] =
   {
-      -4,    -1,     0,     4,    -5,    -5,    -5,    -4,    -5
+      -4,     2,     3,     4,     8,    -7,    -7,    -7,    -7,    -4,
+      -4,    -7,    -7
   };
 
   const signed char
    Parser ::yydefact_[] =
   {
-       0,     0,     0,     0,     4,     2,     1,     0,     3
+       0,     0,     0,     0,     0,     6,     2,     4,     1,     0,
+       0,     3,     5
   };
 
   const signed char
    Parser ::yypgoto_[] =
   {
-      -5,    -2,    -5
+      -7,    -6,    -7,    -7
   };
 
   const signed char
    Parser ::yydefgoto_[] =
   {
-       0,     3,     7
+       0,     4,     9,    10
   };
 
   const signed char
    Parser ::yytable_[] =
   {
-       1,     2,     4,     5,     6,     8
+       1,     2,     3,    11,    12,     5,     6,     7,     8
   };
 
   const signed char
    Parser ::yycheck_[] =
   {
-       4,     5,     3,     3,     0,     7
+       4,     5,     6,     9,    10,     3,     3,     3,     0
   };
 
   const signed char
    Parser ::yystos_[] =
   {
-       0,     4,     5,     7,     3,     3,     0,     8,     7
+       0,     4,     5,     6,     8,     3,     3,     3,     0,     9,
+      10,     8,     8
   };
 
   const signed char
    Parser ::yyr1_[] =
   {
-       0,     6,     8,     7,     7
+       0,     7,     9,     8,    10,     8,     8
   };
 
   const signed char
    Parser ::yyr2_[] =
   {
-       0,     2,     0,     4,     2
+       0,     2,     0,     4,     0,     4,     2
   };
 
 
@@ -938,7 +949,7 @@ namespace yy {
   const  Parser ::yytname_[] =
   {
   "\"end of file\"", "error", "\"invalid token\"", "NL", "END", "NUMBER",
-  "$accept", "programme", "$@1", YY_NULLPTR
+  "AVANCE", "$accept", "programme", "$@1", "$@2", YY_NULLPTR
   };
 #endif
 
@@ -947,7 +958,7 @@ namespace yy {
   const signed char
    Parser ::yyrline_[] =
   {
-       0,    44,    44,    44,    49
+       0,    45,    45,    45,    51,    51,    54
   };
 
   void
@@ -1012,10 +1023,10 @@ namespace yy {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5
+       5,     6
     };
     // Last valid token kind.
-    const int code_max = 260;
+    const int code_max = 261;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -1026,9 +1037,9 @@ namespace yy {
   }
 
 } // yy
-#line 1030 "parser.cc"
+#line 1041 "parser.cc"
 
-#line 53 "../parser/parser.yy"
+#line 58 "../parser/parser.yy"
 
 
 void yy::Parser::error( const location_type &l, const std::string & err_msg) {

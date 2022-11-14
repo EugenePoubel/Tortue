@@ -36,6 +36,7 @@
 %token                  NL
 %token                  END
 %token <int>            NUMBER
+%token                  AVANCE
 
 
 %%
@@ -45,6 +46,15 @@ programme:
         std::cout << "nombre : " << $1 << std::endl;
         driver.setVariable("a",$1);
         std::cout <<driver.getVariable("a") << std::endl;
+    } programme
+
+    | AVANCE NL {
+        std::cout<< "test";
+        driver.changerPositionTortue0()
+        
+    | RECULE NL {
+
+    }
     } programme
     | END NL {
         YYACCEPT;

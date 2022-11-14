@@ -38,4 +38,12 @@ fin return token::END;
     return token::NL;
 }
 
+"avance" {
+    return token::AVANCE;
+}
+
+"recule" {
+    return token::RECULE;
+}
+
 %%

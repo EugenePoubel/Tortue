@@ -35,3 +35,7 @@ float    Driver::obtenirOrientationTortue1() {
     monJardin->orientation(1,o);
 }
 /*/
+
+void Driver::avance(){
+    monJardin->changePosition(0,)
+}

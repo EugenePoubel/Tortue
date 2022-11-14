@@ -471,7 +471,8 @@ namespace yy {
     YYUNDEF = 257,                 // "invalid token"
     NL = 258,                      // NL
     END = 259,                     // END
-    NUMBER = 260                   // NUMBER
+    NUMBER = 260,                  // NUMBER
+    AVANCE = 261                   // AVANCE
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -488,7 +489,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 6, ///< Number of tokens.
+        YYNTOKENS = 7, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -496,9 +497,11 @@ namespace yy {
         S_NL = 3,                                // NL
         S_END = 4,                               // END
         S_NUMBER = 5,                            // NUMBER
-        S_YYACCEPT = 6,                          // $accept
-        S_programme = 7,                         // programme
-        S_8_1 = 8                                // $@1
+        S_AVANCE = 6,                            // AVANCE
+        S_YYACCEPT = 7,                          // $accept
+        S_programme = 8,                         // programme
+        S_9_1 = 9,                               // $@1
+        S_10_2 = 10                              // $@2
       };
     };
 
@@ -705,7 +708,8 @@ switch (yykind)
       {
 #if !defined _MSC_VER || defined __clang__
         YY_ASSERT (tok == token::YYEOF
-                   || (token::YYerror <= tok && tok <= token::END));
+                   || (token::YYerror <= tok && tok <= token::END)
+                   || tok == token::AVANCE);
 #endif
       }
 #if 201103L <= YY_CPLUSPLUS
@@ -859,6 +863,21 @@ switch (yykind)
       make_NUMBER (const int& v, const location_type& l)
       {
         return symbol_type (token::NUMBER, v, l);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
+      make_AVANCE (location_type l)
+      {
+        return symbol_type (token::AVANCE, std::move (l));
+      }
+#else
+      static
+      symbol_type
+      make_AVANCE (const location_type& l)
+      {
+        return symbol_type (token::AVANCE, l);
       }
 #endif
 
@@ -1165,9 +1184,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 5,     ///< Last index in yytable_.
-      yynnts_ = 3,  ///< Number of nonterminal symbols.
-      yyfinal_ = 6 ///< Termination state number.
+      yylast_ = 8,     ///< Last index in yytable_.
+      yynnts_ = 4,  ///< Number of nonterminal symbols.
+      yyfinal_ = 8 ///< Termination state number.
     };
 
 
@@ -1179,7 +1198,7 @@ switch (yykind)
 
 
 } // yy
-#line 1183 "parser.hh"
+#line 1202 "parser.hh"
 
 
 
