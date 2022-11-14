@@ -45,5 +45,16 @@ fin return token::END;
 "recule" {
     return token::RECULE;
 }
+"droite"    {
+    return token::DROITE;
+}
+
+"gauche"    {
+    return token::GAUCHE;
+}
+
+"/"         {
+    return token::DIVISE;
+}
 
 %%

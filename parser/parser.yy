@@ -36,7 +36,11 @@
 %token                  NL
 %token                  END
 %token <int>            NUMBER
+%token                  RECULE
 %token                  AVANCE
+%token                  GAUCHE
+%token                  DROITE
+%token                  DIVISE
 
 
 %%
@@ -47,18 +51,36 @@ programme:
         driver.setVariable("a",$1);
         std::cout <<driver.getVariable("a") << std::endl;
     } programme
+    | RECULE NUMBER NL{
+        std::cout << "reculer avec nombre " <<std::endl;
 
-    | AVANCE NL {
-        std::cout<< "test";
-        driver.changerPositionTortue0()
-        
-    | RECULE NL {
+    }  programme
+    | RECULE NL{
+        std::cout << "recule " <<std::endl;
 
-    }
+    }  programme
+    | DROITE NL{
+        std::cout << "droite " <<std::endl;
+
+    }  programme
+    | GAUCHE  NUMBER NL{
+        std::cout << "gauche " <<std::endl;
+       
     } programme
+    | RECULE NUMBER NL{
+        std::cout << "nombre : " <<std::endl;
+
+    }  programme
     | END NL {
         YYACCEPT;
     }
+
+    | NUMBER DIVISE NUMBER NL{
+        std::cout << $1<<"/" << $3 <<"=";
+        driver.setVariable("a",$1/$3);
+        std::cout <<driver.getVariable("a") << std::endl;
+
+    }  programme
     
 %%
 
