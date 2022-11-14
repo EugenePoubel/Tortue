@@ -40,7 +40,11 @@
 %token                  AVANCE
 %token                  GAUCHE
 %token                  DROITE
-%token                  DIVISE
+%type <int>             exp
+
+%left '+'
+%left '*'
+%precedence NEG
 
 
 %%
@@ -51,7 +55,7 @@ programme:
         driver.setVariable("a",$1);
         std::cout <<driver.getVariable("a") << std::endl;
     } programme
-    | RECULE NUMBER NL{
+    | RECULE exp NL{
         std::cout << "reculer avec nombre " <<std::endl;
 
     }  programme
@@ -63,8 +67,8 @@ programme:
         std::cout << "droite " <<std::endl;
 
     }  programme
-    | GAUCHE  NUMBER NL{
-        std::cout << "gauche " <<std::endl;
+    | GAUCHE  exp NL{
+        std::cout << "gauche avec nombre" <<std::endl;
        
     } programme
     | RECULE NUMBER NL{
@@ -75,12 +79,21 @@ programme:
         YYACCEPT;
     }
 
-    | NUMBER DIVISE NUMBER NL{
-        std::cout << $1<<"/" << $3 <<"=";
-        driver.setVariable("a",$1/$3);
-        std::cout <<driver.getVariable("a") << std::endl;
-
-    }  programme
+    
+exp:
+        NUMBER
+    |   exp '+' exp {
+        $$ = $1 + $3;
+    }
+    |   exp '*' exp {
+        $$ = $1 * $3;
+    }
+    |   '(' exp ')' {
+        $$ = $2;
+    }
+    |   '-' exp  %prec  NEG  {
+        $$ = -$2;
+    }
     
 %%
 

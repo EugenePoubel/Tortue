@@ -53,8 +53,16 @@ fin return token::END;
     return token::GAUCHE;
 }
 
-"/"         {
-    return token::DIVISE;
+
+[ \t]+          {
+    
 }
+
+fin return token::END;
+"+" return '+';
+"-" return '-';
+"*" return '*';
+"(" return '(';
+")" return ')';
 
 %%
