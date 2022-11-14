@@ -37,7 +37,7 @@
 %token                  END
 %token <int>            NUMBER
 %token                  AVANCE
-
+%token                  RECULE
 
 %%
 
@@ -50,11 +50,9 @@ programme:
 
     | AVANCE NL {
         std::cout<< "test";
-        driver.changerPositionTortue0()
-        
+    } programme
     | RECULE NL {
 
-    }
     } programme
     | END NL {
         YYACCEPT;
