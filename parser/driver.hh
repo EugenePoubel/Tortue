@@ -15,7 +15,6 @@ class Driver {
 private:      
     JardinHandler * monJardin;
     Contexte variables;       
-
 public:
     Driver(JardinHandler * J);
     ~Driver();
@@ -27,10 +26,7 @@ public:
 /* EXEMPLE
     void    Driver::changerPositionTortue0(int x, int y);
     float    obtenirOrientationTortue1();
-*/ 
-
-};
-
+*/ };
 #endif
 
 
