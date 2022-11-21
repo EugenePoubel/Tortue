@@ -77,6 +77,26 @@ programme:
     | AVANCE mouvement {
         std::cout << "avance de "<<$2 <<std::endl;
 
+    }
+
+    //deplacement sur une tortue
+
+    programme
+    | GAUCHE  mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<<" gauche de " <<$2 <<std::endl;
+       
+    } programme
+    | DROITE mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<< " droite de " <<$2<<std::endl;
+
+    }  programme
+    | RECULE mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2 <<std::endl;
+
+    }  programme
+    | AVANCE mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<< " avance de "<<$2 <<std::endl;
+
     }  
     
     
@@ -93,11 +113,19 @@ mouvement:
         $$=1;
     }
     |
-    exp NL{
+    exp NL {
         $$=$1;
     }
     |
-    exp FOIS NL{
+    exp FOIS NL {
+        $$=$1;
+    }
+    |
+    exp {
+        $$=$1;
+    }
+    |
+    exp FOIS  {
         $$=$1;
     }
 
