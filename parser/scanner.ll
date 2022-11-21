@@ -53,6 +53,9 @@ fin return token::END;
     return token::GAUCHE;
 }
 
+"fois"      {
+    return token::FOIS;
+}
 
 [ \t]+          {
     

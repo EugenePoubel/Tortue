@@ -40,6 +40,7 @@
 %token                  AVANCE
 %token                  GAUCHE
 %token                  DROITE
+%token                  FOIS
 %type <int>             exp
 
 %left '+'
@@ -54,7 +55,10 @@ programme:
         std::cout << "nombre : " << $1 << std::endl;
         driver.setVariable("a",$1);
         std::cout <<driver.getVariable("a") << std::endl;
-    } programme
+    } 
+    
+    
+    programme
     | RECULE NL{
         std::cout << "recule " <<std::endl;
 
@@ -70,7 +74,10 @@ programme:
     | GAUCHE NL{
         std::cout << "gauche " <<std::endl;
 
-    }  programme
+    }  
+    
+    
+    programme
     | GAUCHE  exp NL{
         std::cout << "gauche avec nombre" <<$2 <<std::endl;
        
@@ -86,10 +93,36 @@ programme:
     | AVANCE exp NL{
         std::cout << "avance avec nombre "<<$2 <<std::endl;
 
+    }  
+    
+    
+    
+    
+    programme
+    | GAUCHE  exp  FOIS NL{
+        std::cout << "gauche avec nombre" <<$2 <<" fois"<<std::endl;
+       
+    } programme
+    | DROITE NUMBER FOIS NL{
+        std::cout << "droite nombre : " <<$2<<" fois"<<std::endl;
+
     }  programme
+    | RECULE exp FOIS NL{
+        std::cout << "reculer avec nombre "<<$2 <<" fois"<<std::endl;
+
+    }  programme
+    | AVANCE exp FOIS NL{
+        std::cout << "avance avec nombre "<<$2 <<" fois"<<std::endl;
+
+    }  
+    
+    
+    
+    programme
     | END NL {
         YYACCEPT;
     }
+    
 
     
 exp:
