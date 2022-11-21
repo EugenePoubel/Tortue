@@ -41,6 +41,8 @@
 %token                  GAUCHE
 %token                  DROITE
 %token                  FOIS
+%token                  AT
+%type <int>             mouvement
 %type <int>             exp
 
 %left '+'
@@ -57,66 +59,25 @@ programme:
         std::cout <<driver.getVariable("a") << std::endl;
     } 
     
-    
+    //deplacement sur toutes les tortues
+
     programme
-    | RECULE NL{
-        std::cout << "recule " <<std::endl;
-
-    }  programme
-    | AVANCE NL{
-        std::cout << "avance " <<std::endl;
-
-    }  programme
-    | DROITE NL{
-        std::cout << "droite " <<std::endl;
-
-    }  programme
-    | GAUCHE NL{
-        std::cout << "gauche " <<std::endl;
-
-    }  
-    
-    
-    programme
-    | GAUCHE  exp NL{
-        std::cout << "gauche avec nombre" <<$2 <<std::endl;
-        driver.
-    } programme
-    | DROITE NUMBER NL{
-        std::cout << "droite nombre : " <<$2<<std::endl;
-
-    }  programme
-    | RECULE exp NL{
-        std::cout << "reculer avec nombre "<<$2 <<std::endl;
-
-    }  programme
-    | AVANCE exp NL{
-        std::cout << "avance avec nombre "<<$2 <<std::endl;
-        
-
-    }  
-    
-    
-    
-    
-    programme
-    | GAUCHE  exp  FOIS NL{
-        std::cout << "gauche avec nombre" <<$2 <<" fois"<<std::endl;
+    | GAUCHE  mouvement {
+        std::cout << "gauche de " <<$2 <<std::endl;
        
     } programme
-    | DROITE NUMBER FOIS NL{
-        std::cout << "droite nombre : " <<$2<<" fois"<<std::endl;
+    | DROITE mouvement {
+        std::cout << "droite de " <<$2<<std::endl;
 
     }  programme
-    | RECULE exp FOIS NL{
-        std::cout << "reculer avec nombre "<<$2 <<" fois"<<std::endl;
+    | RECULE mouvement {
+        std::cout << "reculer de "<<$2 <<std::endl;
 
     }  programme
-    | AVANCE exp FOIS NL{
-        std::cout << "avance avec nombre "<<$2 <<" fois"<<std::endl;
+    | AVANCE mouvement {
+        std::cout << "avance de "<<$2 <<std::endl;
 
     }  
-    
     
     
     programme
@@ -125,8 +86,22 @@ programme:
     }
     
 
-    
-exp:
+//recuperation d'un calcul 
+mouvement:
+
+    NL{
+        $$=1;
+    }
+    |
+    exp NL{
+        $$=$1;
+    }
+    |
+    exp FOIS NL{
+        $$=$1;
+    }
+
+exp :
         NUMBER
     |   exp '+' exp {
         $$ = $1 + $3;
@@ -143,7 +118,6 @@ exp:
     |   exp '/' exp {
         $$ = $1 / $3;
     }
-    
 %%
 
 void yy::Parser::error( const location_type &l, const std::string & err_msg) {

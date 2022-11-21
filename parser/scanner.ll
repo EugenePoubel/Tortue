@@ -57,6 +57,10 @@ fin return token::END;
     return token::FOIS;
 }
 
+"@"         {
+    return token::AT;
+}
+
 [ \t]+          {
     
 }
