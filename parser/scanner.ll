@@ -62,6 +62,7 @@ fin return token::END;
 "+" return '+';
 "-" return '-';
 "*" return '*';
+"/" return '/';
 "(" return '(';
 ")" return ')';
 

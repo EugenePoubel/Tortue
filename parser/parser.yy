@@ -55,24 +55,36 @@ programme:
         driver.setVariable("a",$1);
         std::cout <<driver.getVariable("a") << std::endl;
     } programme
-    | RECULE exp NL{
-        std::cout << "reculer avec nombre " <<std::endl;
-
-    }  programme
     | RECULE NL{
         std::cout << "recule " <<std::endl;
+
+    }  programme
+    | AVANCE NL{
+        std::cout << "avance " <<std::endl;
 
     }  programme
     | DROITE NL{
         std::cout << "droite " <<std::endl;
 
     }  programme
+    | GAUCHE NL{
+        std::cout << "gauche " <<std::endl;
+
+    }  programme
     | GAUCHE  exp NL{
-        std::cout << "gauche avec nombre" <<std::endl;
+        std::cout << "gauche avec nombre" <<$2 <<std::endl;
        
     } programme
-    | RECULE NUMBER NL{
-        std::cout << "nombre : " <<std::endl;
+    | DROITE NUMBER NL{
+        std::cout << "droite nombre : " <<$2<<std::endl;
+
+    }  programme
+    | RECULE exp NL{
+        std::cout << "reculer avec nombre "<<$2 <<std::endl;
+
+    }  programme
+    | AVANCE exp NL{
+        std::cout << "avance avec nombre "<<$2 <<std::endl;
 
     }  programme
     | END NL {
@@ -93,6 +105,9 @@ exp:
     }
     |   '-' exp  %prec  NEG  {
         $$ = -$2;
+    }
+    |   exp '/' exp {
+        $$ = $1 / $3;
     }
     
 %%
