@@ -7,7 +7,10 @@
 #include <QColor>
 #include <QSize>
 #include "contexte.hh"
-
+enum class direction{
+    GAUCHE,
+    DROITE
+};
 class JardinHandler;
 class JardinRendering;
 
@@ -23,8 +26,12 @@ public:
     void    setVariable(const std::string& name, double value);
     JardinRendering* getJardin();
     void deplacement(int x,int y,int idTortue);
-    void     changerPositionTortue0(int x, int y);
-    float    obtenirOrientationTortue1();
+    float Orientation(int i);
+    float getX(int id);
+    float getY(int id);
+    void avance(int x);
+    void tourne(direction d);
+    void tourneTortues(int d);
 };
 #endif
 

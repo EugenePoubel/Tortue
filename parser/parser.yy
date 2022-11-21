@@ -80,7 +80,7 @@ programme:
     programme
     | GAUCHE  exp NL{
         std::cout << "gauche avec nombre" <<$2 <<std::endl;
-       
+        driver.
     } programme
     | DROITE NUMBER NL{
         std::cout << "droite nombre : " <<$2<<std::endl;
@@ -92,6 +92,7 @@ programme:
     }  programme
     | AVANCE exp NL{
         std::cout << "avance avec nombre "<<$2 <<std::endl;
+        
 
     }  
     
