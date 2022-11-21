@@ -22,11 +22,10 @@ public:
     double  getVariable(const std::string& name) const;
     void    setVariable(const std::string& name, double value);
     JardinRendering* getJardin();
-    void avance();
-/* EXEMPLE
-    void    Driver::changerPositionTortue0(int x, int y);
+    void deplacement(int x,int y,int idTortue);
+    void     changerPositionTortue0(int x, int y);
     float    obtenirOrientationTortue1();
-*/ };
+};
 #endif
 
 

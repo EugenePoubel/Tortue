@@ -25,7 +25,9 @@ void Driver::setVariable(const std::string & name, double value) {
 JardinRendering * Driver::getJardin() {
     return monJardin->getJardinRendering();
 }
-
+void Driver::deplacement(int x,int y,int id){
+    getJardin()->changePosition(id,x,y);
+}
 /* EXEMPLE
 void    Driver::changerPositionTortue0(int x, int y) {
     monJardin->changePosition(0,x,y);
@@ -35,6 +37,3 @@ float    Driver::obtenirOrientationTortue1() {
     monJardin->orientation(1,o);
 }
 /*/
-
-void Driver::avance(){
-}
