@@ -32,18 +32,32 @@ void Driver::deplacement(int x,int y,int id){
 float Driver::Orientation(int i){
     return getJardin()->getTortues()[i]->getOrientation();
 }
+direction Driver::Direction(int id){
+    switch (Orientation(i))
+    {
+    case 0:
+        return direction::DEVANT
+        break;
+    case 90:
+        return direction::DROITE
+        break;
+    case 180:
+        return direction::DERRIERE
+        break;
+    case 270:
+        return direction::GAUCHE
+        break;
+    default:
+        std::cout<<"Erreur dans direction()";
+        return direction::DEVANT
+        break;
+    }
+}
 float Driver::getX(int id){
    return getJardin()->getTortues()[id]->getX();
 }
 float Driver::getY(int id){
    return getJardin()->getTortues()[id]->getY();
-}
-void Driver::avance(int x,direction d){
-    int Orientation;
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
-    {
-        avance(x,d,i);
-    }
 }
 void Driver::avance(int x,direction d,int id){
 switch ((static_cast<int>(Orientation(id))+static_cast<int>(d))%360)
@@ -64,6 +78,23 @@ default:
     break;
 }
     }
+void Driver::avance(int x,direction d){
+    int Orientation;
+    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
+    {
+        avance(x,d,i);
+    }
+}
+void Driver::avance(int x,int id){
+    avance(x,direction::DEVANT,id);
+}
+void Driver::avance(int x){
+    int Orientation;
+    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
+    {
+        avance(x,i);
+    }
+}
 void Driver::tourne(direction d,int x, int id){
     getJardin()->getTortues()[id]->setOrientation((static_cast<int>(Orientation(id))+static_cast<int>(d)*x)%360)
 }
@@ -81,4 +112,7 @@ void Driver::tourne(direction d,int x){
     {
         tourne(d,i,x);
     }
+}
+void Driver::reculer(int x,int id){
+    avance(x,)
 }

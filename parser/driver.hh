@@ -29,8 +29,11 @@ public:
     JardinRendering* getJardin();
     void deplacement(int x,int y,int idTortue);
     float Orientation(int i);
+    direction Direction(int id);
     float getX(int id);
     float getY(int id);
+    void avance(int x);
+    void avance(int x,int id);
     void avance(int x,direction d);
     void avance(int x,direction d,int id);
     void tourne(direction d);
