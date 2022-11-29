@@ -8,8 +8,10 @@
 #include <QSize>
 #include "contexte.hh"
 enum class direction{
-    GAUCHE,
-    DROITE
+    GAUCHE   = -90,
+    DERRIERE = 180,
+    DEVANT   = 0,
+    DROITE   = 90
 };
 class JardinHandler;
 class JardinRendering;
@@ -29,9 +31,12 @@ public:
     float Orientation(int i);
     float getX(int id);
     float getY(int id);
-    void avance(int x);
+    void avance(int x,direction d);
+    void avance(int x,direction d,int id);
     void tourne(direction d);
-    void tourneTortues(int d);
+    void tourne(direction d,int x);
+    void tourne(direction d,int x,int id);
+    void tourne(direction d,int d);
 };
 #endif
 

@@ -38,54 +38,47 @@ float Driver::getX(int id){
 float Driver::getY(int id){
    return getJardin()->getTortues()[id]->getY();
 }
-void Driver::avance(int x){
+void Driver::avance(int x,direction d){
+    int Orientation;
     for (int i = 0; i < getJardin()->nombreTortues(); i++) 
     {
-        switch (static_cast<int>(Orientation(i)))
-        {
-        case 0:
-        getJardin()->changePosition(i,getX(i),getY(i)+x);
-            break;
-        case 90:
-        getJardin()->changePosition(i,getX(i),getY(i)-x);
-            break;
-        case 180:
-        getJardin()->changePosition(i,getX(i)+x,getY(i));
-            break;
-        case 270:
-        getJardin()->changePosition(i,getX(i)-x,getY(i));
-            break;
-        default:
-            break;
-        }
+        avance(x,d,i);
     }
 }
-void Driver::tourneTortues(int d){
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
-    {
-        getJardin()->getTortues()[i]->setOrientation(Orientation(i)+d);
+void Driver::avance(int x,direction d,int id){
+switch ((static_cast<int>(Orientation(id))+static_cast<int>(d))%360)
+{
+case 0:
+getJardin()->changePosition(i,getX(i),getY(i)+x);
+    break;
+case 90:
+getJardin()->changePosition(i,getX(i)+x,getY(i));
+    break;
+case 180:
+getJardin()->changePosition(i,getX(i),getY(i)-x);
+    break;
+case 270:
+getJardin()->changePosition(i,getX(i)-x,getY(i));
+    break;
+default:
+    break;
+}
     }
-    
+void Driver::tourne(direction d,int x, int id){
+    getJardin()->getTortues()[id]->setOrientation((static_cast<int>(Orientation(id))+static_cast<int>(d)*x)%360)
+}
+void Driver::tourne(direction d,int id){
+    getJardin()->getTortues()[id]->setOrientation((static_cast<int>(Orientation(id))+static_cast<int>(d))%360)
 }
 void Driver::tourne(direction d){
-    switch (d)
+    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
     {
-    case direction::GAUCHE:
-        tourneTortues(-90);
-        break;
-    case direction::DROITE:
-        tourneTortues(+90);
-        break;
-    default:
-        break;
+        tourne(d,i);
     }
 }
-/* EXEMPLE
-void    Driver::changerPositionTortue0(int x, int y) {
-    monJardin->changePosition(0,x,y);
+void Driver::tourne(direction d,int x){
+    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
+    {
+        tourne(d,i,x);
+    }
 }
-
-float    Driver::obtenirOrientationTortue1() {
-    monJardin->orientation(1,o);
-}
-/*/
