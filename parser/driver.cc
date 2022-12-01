@@ -67,35 +67,16 @@ direction Driver::Direction(id _id)
         break;
     }
 }
+
 float Driver::getX(id _id)
 {
     return getJardin()->getTortues()[_id]->getX();
 }
+
 float Driver::getY(id _id)
 {
     return getJardin()->getTortues()[_id]->getY();
 }
-
-/*void Driver::avance(int x = 1, direction d, id _id)
-{
-    switch (modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d)), 360))
-    {
-    case 0:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) + x);
-        break;
-    case 90:
-        getJardin()->changePosition(_id, getX(_id) + x, getY(_id));
-        break;
-    case 180:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) - x);
-        break;
-    case 270:
-        getJardin()->changePosition(_id, getX(_id) - x, getY(_id));
-        break;
-    default:
-        break;
-    }
-}*/
 
 void Driver::avance(int x = 1, id _id)
 {
