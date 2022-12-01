@@ -63,7 +63,8 @@ programme:
 
     programme
     | GAUCHE  mouvement {
-        std::cout << "gauche de " <<$2 <<std::endl;
+        std::cout << "gauche de " <<$3 <<std::endl;
+        driver.tourne($3,direction::gauche);
        
     } programme
     | DROITE mouvement {
@@ -76,6 +77,7 @@ programme:
     }  programme
     | AVANCE mouvement {
         std::cout << "avance de "<<$2 <<std::endl;
+        driver.avance($2);
 
     }
 
@@ -96,6 +98,7 @@ programme:
     }  programme
     | AVANCE mouvement AT NUMBER NL{
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2 <<std::endl;
+        
 
     }  
     

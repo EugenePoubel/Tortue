@@ -2,117 +2,139 @@
 #include "jardinHandler.hh"
 #include <iostream>
 
-Driver::Driver(JardinHandler * J) {
+int modulo(int a, int b) { return (a % b + b) % b; };
+
+Driver::Driver(JardinHandler *J)
+{
     monJardin = J;
 }
 
-Driver::~Driver() {
-	delete monJardin;
+Driver::~Driver()
+{
+    delete monJardin;
 }
 
-const Contexte& Driver::getContexte() const {
+const Contexte &Driver::getContexte() const
+{
     return variables;
 }
 
-double Driver::getVariable(const std::string & name) const {
+double Driver::getVariable(const std::string &name) const
+{
     return variables.get(name);
 }
 
-void Driver::setVariable(const std::string & name, double value) {
+void Driver::setVariable(const std::string &name, double value)
+{
     variables[name] = value;
 }
 
-JardinRendering * Driver::getJardin() {
+JardinRendering *Driver::getJardin()
+{
     return monJardin->getJardinRendering();
 }
-void Driver::deplacement(int x,int y,int id){
-    
-    getJardin()->changePosition(id,x,y);
+
+void Driver::deplacement(int x, int y, id _id)
+{
+
+    getJardin()->changePosition(_id, x, y);
 }
-float Driver::Orientation(int i){
+
+float Driver::Orientation(int i)
+{
     return getJardin()->getTortues()[i]->getOrientation();
 }
-direction Driver::Direction(int id){
-    switch (Orientation(i))
+
+direction Driver::Direction(id _id)
+{
+    switch (static_cast<int>(Orientation(_id)))
     {
     case 0:
-        return direction::DEVANT
+        return direction::DEVANT;
         break;
     case 90:
-        return direction::DROITE
+        return direction::DROITE;
         break;
     case 180:
-        return direction::DERRIERE
+        return direction::DERRIERE;
         break;
     case 270:
-        return direction::GAUCHE
+        return direction::GAUCHE;
         break;
     default:
-        std::cout<<"Erreur dans direction()";
-        return direction::DEVANT
+        std::cout << "Erreur dans direction()";
+        return direction::DEVANT;
         break;
     }
 }
-float Driver::getX(int id){
-   return getJardin()->getTortues()[id]->getX();
-}
-float Driver::getY(int id){
-   return getJardin()->getTortues()[id]->getY();
-}
-void Driver::avance(int x,direction d,int id){
-switch ((static_cast<int>(Orientation(id))+static_cast<int>(d))%360)
+float Driver::getX(id _id)
 {
-case 0:
-getJardin()->changePosition(i,getX(i),getY(i)+x);
-    break;
-case 90:
-getJardin()->changePosition(i,getX(i)+x,getY(i));
-    break;
-case 180:
-getJardin()->changePosition(i,getX(i),getY(i)-x);
-    break;
-case 270:
-getJardin()->changePosition(i,getX(i)-x,getY(i));
-    break;
-default:
-    break;
+    return getJardin()->getTortues()[_id]->getX();
 }
-    }
-void Driver::avance(int x,direction d){
-    int Orientation;
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
+float Driver::getY(id _id)
+{
+    return getJardin()->getTortues()[_id]->getY();
+}
+
+/*void Driver::avance(int x = 1, direction d, id _id)
+{
+    switch (modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d)), 360))
     {
-        avance(x,d,i);
+    case 0:
+        getJardin()->changePosition(_id, getX(_id), getY(_id) + x);
+        break;
+    case 90:
+        getJardin()->changePosition(_id, getX(_id) + x, getY(_id));
+        break;
+    case 180:
+        getJardin()->changePosition(_id, getX(_id), getY(_id) - x);
+        break;
+    case 270:
+        getJardin()->changePosition(_id, getX(_id) - x, getY(_id));
+        break;
+    default:
+        break;
     }
-}
-void Driver::avance(int x,int id){
-    avance(x,direction::DEVANT,id);
-}
-void Driver::avance(int x){
-    int Orientation;
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
-    {
-        avance(x,i);
-    }
-}
-void Driver::tourne(direction d,int x, int id){
-    getJardin()->getTortues()[id]->setOrientation((static_cast<int>(Orientation(id))+static_cast<int>(d)*x)%360)
-}
-void Driver::tourne(direction d,int id){
-    getJardin()->getTortues()[id]->setOrientation((static_cast<int>(Orientation(id))+static_cast<int>(d))%360)
-}
-void Driver::tourne(direction d){
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
-    {
-        tourne(d,i);
-    }
-}
-void Driver::tourne(direction d,int x){
-    for (int i = 0; i < getJardin()->nombreTortues(); i++) 
-    {
-        tourne(d,i,x);
-    }
-}
-/*void Driver::reculer(int x,int id){
-    avance(x,)
 }*/
+
+void Driver::avance(int x = 1, id _id)
+{
+    switch (static_cast<int>(Orientation(_id)))
+    {
+    case 0:
+        getJardin()->changePosition(_id, getX(_id), getY(_id) + x);
+        break;
+    case 90:
+        getJardin()->changePosition(_id, getX(_id) + x, getY(_id));
+        break;
+    case 180:
+        getJardin()->changePosition(_id, getX(_id), getY(_id) - x);
+        break;
+    case 270:
+        getJardin()->changePosition(_id, getX(_id) - x, getY(_id));
+        break;
+    default:
+        break;
+    }
+}
+
+void Driver::avance(int x = 1)
+{
+    for (short i = 0; i < getJardin()->nombreTortues(); i++)
+    {
+        avance(x, i);
+    }
+}
+
+void Driver::tourne(direction d, int x = 1, id _id)
+{
+    getJardin()->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * x), 360));
+}
+
+void Driver::tourneTout(direction d, int x = 1)
+{
+    for (int i = 0; i < getJardin()->nombreTortues(); i++)
+    {
+        tourne(d, i, x);
+    }
+}

@@ -15,7 +15,7 @@ enum class direction{
 };
 class JardinHandler;
 class JardinRendering;
-
+using id = short;
 class Driver {
 private:      
     JardinHandler * monJardin;
@@ -27,19 +27,15 @@ public:
     double  getVariable(const std::string& name) const;
     void    setVariable(const std::string& name, double value);
     JardinRendering* getJardin();
-    void deplacement(int x,int y,int idTortue);
+    void deplacement(int x,int y,id _id);
     float Orientation(int i);
-    direction Direction(int id);
-    float getX(int id);
-    float getY(int id);
+    direction Direction(id _id);
+    float getX(id _id);
+    float getY(id _id);
     void avance(int x);
-    void avance(int x,int id);
-    void avance(int x,direction d);
-    void avance(int x,direction d,int id);
-    void tourne(direction d);
-    void tourne(direction d,int x);
-    void tourne(direction d,int x,int id);
-    void tourne(direction d,int d);
+    void avance(int x,id _id);
+    void tourneTout(direction d,int x);
+    void tourne(direction d,int x,id _id);
 };
 #endif
 
