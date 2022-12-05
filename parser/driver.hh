@@ -31,10 +31,10 @@ public:
     direction Direction(id _id);
     float getX(id _id);
     float getY(id _id);
-    void avance(int nbFois = 1);
-    void avance(id _id, int nbFois = 1);
-    void tourneTout(direction d,int nbFois = 1);
-    void tourne(direction d,id _id, int nbFois = 1);
+    void avance(int nbFois);
+    void avance(id _id, int nbFois);
+    void tourneTout(direction d,int nbFois);
+    void tourne(direction d,id _id, int nbFois);
 };
 #endif
 
