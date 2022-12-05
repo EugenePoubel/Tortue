@@ -53,58 +53,61 @@
 
 %%
 
-programme:    
+    //déplacement 
+
+instruction:    
+
     //deplacement sur toutes les tortues
 
-    programme
-    |  TOURNE GAUCHE NL {
-        std::cout << "tourne à gauche "<<std::endl;
+    instruction
+    |  TOURNE GAUCHE mouvement NL{
+        std::cout << "tourne à gauche "<<$3<<" fois"<<std::endl;
        
-    } programme
-    | TOURNE DROITE NL{
-        std::cout << "tourne à droite "<<std::endl;
+    } instruction
+    | TOURNE DROITE mouvement NL{
+        std::cout << "tourne à droite "<<$3<<" fois"<<std::endl;
 
-    }  programme
-    | RECULE mouvement NL {
+    }  instruction
+    | RECULE mouvement NL{
         std::cout << "reculer de "<<$2 <<std::endl;
 
-    }  programme
+    }  instruction
     | AVANCE mouvement NL{
         std::cout << "avance de "<<$2 <<std::endl;
 
     }
+
     //deplacement sur une tortue
 
-    programme
-    | TOURNE GAUCHE AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<<" tourne à gauche "<<std::endl;
+    instruction
+    | TOURNE GAUCHE mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$5<<" tourne à gauche "<<$3<<" fois"<<std::endl;
        
-    } programme
-    | TOURNE DROITE AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<< " tourne à droite "<<std::endl;
+    } instruction
+    | TOURNE DROITE mouvement AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$5<< " tourne à droite "<<$3<<" fois"<<std::endl;
 
-    }  programme
+    }  instruction
     | RECULE mouvement AT NUMBER NL{
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
 
-    }  programme
+    }  instruction
     | AVANCE mouvement AT NUMBER NL{
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
         
 
-    }  
-    
-    
-    programme
-    | END NL {
+    } 
+
+    instruction
+    |END NL {
         YYACCEPT;
     }
-    
+   
+    //mise en forme d'un mouvement 
 
- 
 mouvement:
 
-    NL{
+    {
         $$=1;
     }
     |
@@ -116,7 +119,7 @@ mouvement:
         $$=$1;
     }
 
-//recuperation d'un calcul
+    //recuperation d'un calcul
 
 exp :
         NUMBER
