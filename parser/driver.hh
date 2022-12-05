@@ -27,7 +27,6 @@ public:
     double  getVariable(const std::string& name) const;
     void    setVariable(const std::string& name, double value);
     JardinRendering* getJardin();
-    void deplacement(int x,int y,id _id);
     float Orientation(int i);
     direction Direction(id _id);
     float getX(id _id);

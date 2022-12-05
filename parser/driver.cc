@@ -2,7 +2,7 @@
 #include "jardinHandler.hh"
 #include <iostream>
 
-int modulo(int a, int b) { return (a % b + b) % b; };
+int modulo(int a, int b) {return (a % b + b) % b; };
 
 Driver::Driver(JardinHandler *J)
 {
@@ -32,12 +32,6 @@ void Driver::setVariable(const std::string &name, double value)
 JardinRendering *Driver::getJardin()
 {
     return monJardin->getJardinRendering();
-}
-
-void Driver::deplacement(int x, int y, id _id)
-{
-
-    getJardin()->changePosition(_id, x, y);
 }
 
 float Driver::Orientation(int i)
@@ -103,19 +97,19 @@ void Driver::avance(int nbFois = 1)
 {
     for (short i = 0; i < getJardin()->nombreTortues(); i++)
     {
-        avance(x, i);
+        avance(nbFois, i);
     }
 }
 
 void Driver::tourne(direction d, id _id, int nbFois=1)
 {
-    getJardin()->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * x), 360));
+    getJardin()->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * nbFois), 360));
 }
 
 void Driver::tourneTout(direction d, int nbFois = 1)
 {
     for (int i = 0; i < getJardin()->nombreTortues(); i++)
     {
-        tourne(d, i, x);
+        tourne(d, i, nbFois);
     }
 }
