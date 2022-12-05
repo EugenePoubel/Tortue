@@ -93,7 +93,7 @@ void Driver::avance(id _id, int nbFois = 1)
     }
 }
 
-void Driver::avance(int nbFois = 1)
+void Driver::avanceTout(int nbFois = 1)
 {
     for (short i = 0; i < getJardin()->nombreTortues(); i++)
     {
