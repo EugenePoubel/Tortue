@@ -90,6 +90,7 @@ programme:
     }  programme
     | AVANCE mouvement AT NUMBER NL{
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
+        
 
     }  
     
