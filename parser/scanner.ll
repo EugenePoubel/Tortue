@@ -61,11 +61,14 @@ fin return token::END;
     return token::AT;
 }
 
+"tourne"    {
+    return token::TOURNE;
+}
+
 [ \t]+          {
     
 }
 
-fin return token::END;
 "+" return '+';
 "-" return '-';
 "*" return '*';
