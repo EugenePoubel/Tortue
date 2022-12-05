@@ -41,6 +41,7 @@
 %token                  GAUCHE
 %token                  DROITE
 %token                  FOIS
+%token                  TOURNE
 %token                  AT
 %type <int>             mouvement
 %type <int>             exp
@@ -52,50 +53,43 @@
 
 %%
 
-programme:
-    NUMBER NL {
-        std::cout << "nombre : " << $1 << std::endl;
-        driver.setVariable("a",$1);
-        std::cout <<driver.getVariable("a") << std::endl;
-    } 
-    
+programme:    
     //deplacement sur toutes les tortues
 
     programme
-    | GAUCHE  mouvement {
-        std::cout << "gauche de " <<$2 <<std::endl;
+    |  TOURNE GAUCHE NL {
+        std::cout << "tourne à gauche "<<std::endl;
        
     } programme
-    | DROITE mouvement {
-        std::cout << "droite de " <<$2<<std::endl;
+    | TOURNE DROITE NL{
+        std::cout << "tourne à droite "<<std::endl;
 
     }  programme
-    | RECULE mouvement {
+    | RECULE mouvement NL {
         std::cout << "reculer de "<<$2 <<std::endl;
 
     }  programme
-    | AVANCE mouvement {
+    | AVANCE mouvement NL{
         std::cout << "avance de "<<$2 <<std::endl;
 
     }
-
     //deplacement sur une tortue
 
     programme
-    | GAUCHE  mouvement AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<<" gauche de " <<$2 <<std::endl;
+    | TOURNE GAUCHE AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<<" tourne à gauche "<<std::endl;
        
     } programme
-    | DROITE mouvement AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<< " droite de " <<$2<<std::endl;
+    | TOURNE DROITE AT NUMBER NL{
+        std::cout <<"tortue numéro "<<$4<< " tourne à droite "<<std::endl;
 
     }  programme
     | RECULE mouvement AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2 <<std::endl;
+        std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
 
     }  programme
     | AVANCE mouvement AT NUMBER NL{
-        std::cout <<"tortue numéro "<<$4<< " avance de "<<$2 <<std::endl;
+        std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
 
     }  
     
@@ -106,28 +100,22 @@ programme:
     }
     
 
-//recuperation d'un calcul 
+ 
 mouvement:
 
     NL{
         $$=1;
     }
     |
-    exp NL {
-        $$=$1;
-    }
-    |
-    exp FOIS NL {
-        $$=$1;
-    }
-    |
     exp {
         $$=$1;
     }
     |
-    exp FOIS  {
+    exp FOIS {
         $$=$1;
     }
+
+//recuperation d'un calcul
 
 exp :
         NUMBER
