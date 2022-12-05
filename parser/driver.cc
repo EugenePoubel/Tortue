@@ -77,16 +77,16 @@ void Driver::avance(id _id, int nbFois = 1)
     switch (static_cast<int>(Orientation(_id)))
     {
     case 0:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) + x);
+        getJardin()->changePosition(_id, getX(_id), getY(_id) + nbFois);
         break;
     case 90:
-        getJardin()->changePosition(_id, getX(_id) + x, getY(_id));
+        getJardin()->changePosition(_id, getX(_id) + nbFois, getY(_id));
         break;
     case 180:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) - x);
+        getJardin()->changePosition(_id, getX(_id), getY(_id) - nbFois);
         break;
     case 270:
-        getJardin()->changePosition(_id, getX(_id) - x, getY(_id));
+        getJardin()->changePosition(_id, getX(_id) - nbFois, getY(_id));
         break;
     default:
         break;
