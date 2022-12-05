@@ -53,55 +53,54 @@
 
 %%
 
+programme:
+    instruction NL programme
+    | END NL {
+        YYACCEPT;
+    }
+
     //déplacement 
 
 instruction:    
 
     //deplacement sur toutes les tortues
 
-    instruction
-    |  TOURNE GAUCHE mouvement NL{
+     TOURNE GAUCHE mouvement {
         std::cout << "tourne à gauche "<<$3<<" fois"<<std::endl;
        
-    } instruction
-    | TOURNE DROITE mouvement NL{
+    } 
+    | TOURNE DROITE mouvement {
         std::cout << "tourne à droite "<<$3<<" fois"<<std::endl;
 
-    }  instruction
-    | RECULE mouvement NL{
+    }  
+    | RECULE mouvement {
         std::cout << "reculer de "<<$2 <<std::endl;
 
-    }  instruction
-    | AVANCE mouvement NL{
+    }  
+    | AVANCE mouvement{
         std::cout << "avance de "<<$2 <<std::endl;
 
     }
 
     //deplacement sur une tortue
 
-    instruction
-    | TOURNE GAUCHE mouvement AT NUMBER NL{
+    | TOURNE GAUCHE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<<" tourne à gauche "<<$3<<" fois"<<std::endl;
        
-    } instruction
-    | TOURNE DROITE mouvement AT NUMBER NL{
+    } 
+    | TOURNE DROITE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<< " tourne à droite "<<$3<<" fois"<<std::endl;
 
-    }  instruction
-    | RECULE mouvement AT NUMBER NL{
+    } 
+    | RECULE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
 
-    }  instruction
-    | AVANCE mouvement AT NUMBER NL{
+    }  
+    | AVANCE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
         
 
     } 
-
-    instruction
-    |END NL {
-        YYACCEPT;
-    }
    
     //mise en forme d'un mouvement 
 

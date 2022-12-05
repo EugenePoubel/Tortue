@@ -26,7 +26,9 @@ using token = yy::Parser::token;
 %}
 
 
-fin return token::END;
+"fin"   {
+    return token::END;
+}
 
 [0-9]+      {
     yylval->build<int>(std::atoi(yytext));
