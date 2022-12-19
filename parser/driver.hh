@@ -35,6 +35,8 @@ public:
     void avance(id _id, int nbFois);
     void tourneTout(direction d,int nbFois);
     void tourne(direction d,id _id, int nbFois);
+    bool Mur(direction d, id _id);
+    bool Vide(direction d, id _id);
 };
 #endif
 

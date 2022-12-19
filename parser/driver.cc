@@ -1,8 +1,9 @@
 #include "driver.hh"
 #include "jardinHandler.hh"
+#include <stdexcept>
 #include <iostream>
 
-int modulo(int a, int b) {return (a % b + b) % b; };
+int modulo(int a, int b) { return (a % b + b) % b; }; // Le calcul % initial dans C++ rend un résultat incorrect mathématiquement dans les négatif
 
 Driver::Driver(JardinHandler *J)
 {
@@ -101,7 +102,7 @@ void Driver::avanceTout(int nbFois = 1)
     }
 }
 
-void Driver::tourne(direction d, id _id, int nbFois=1)
+void Driver::tourne(direction d, id _id, int nbFois = 1)
 {
     getJardin()->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * nbFois), 360));
 }
@@ -112,4 +113,50 @@ void Driver::tourneTout(direction d, int nbFois = 1)
     {
         tourne(d, i, nbFois);
     }
+}
+using coord = float; /*Les coordonnées sont des flottant Nous aurions aussi pu avoir un unsigned int ou un
+                    short unsigned int*/
+
+bool Driver::Mur(direction d, id _id)
+{
+    switch ((modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d)), 360)))
+    {
+    case 0:
+        return getJardin()->estMur(getX(_id), getY(_id) + 1);
+        break;
+    case 90:
+        return getJardin()->estMur(getX(_id) + 1, getY(_id));
+        break;
+    case 180:
+        return getJardin()->estMur(getX(_id), getY(_id) - 1);
+        break;
+    case 270:
+        return getJardin()->estMur(getX(_id) - 1, getY(_id));
+        break;
+    default:
+        break;
+    }
+    throw std::invalid_argument("Erreur Orientation invalide");
+}
+
+bool Driver::Vide(direction d, id _id)
+{
+    switch ((modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d)), 360)))
+    {
+    case 0:
+        return getJardin()->estVide(getX(_id), getY(_id) + 1);
+        break;
+    case 90:
+        return getJardin()->estVide(getX(_id) + 1, getY(_id));
+        break;
+    case 180:
+        return getJardin()->estVide(getX(_id), getY(_id) - 1);
+        break;
+    case 270:
+        return getJardin()->estVide(getX(_id) - 1, getY(_id));
+        break;
+    default:
+        break;
+    }
+    throw std::invalid_argument("Erreur Orientation invalide");
 }
