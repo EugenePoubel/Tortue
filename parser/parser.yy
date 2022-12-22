@@ -67,18 +67,22 @@ instruction:
 
      TOURNE GAUCHE mouvement {
         std::cout << "tourne à gauche "<<$3<<" fois"<<std::endl;
+        driver.tourneTout(direction::GAUCHE,$3);
        
     } 
     | TOURNE DROITE mouvement {
         std::cout << "tourne à droite "<<$3<<" fois"<<std::endl;
+        driver.tourneTout(direction::DROITE,$3);
 
     }  
     | RECULE mouvement {
         std::cout << "reculer de "<<$2 <<std::endl;
+        driver.avanceTout(-$2);
 
     }  
     | AVANCE mouvement{
         std::cout << "avance de "<<$2 <<std::endl;
+        driver.avanceTout($2);
 
     }
 
@@ -86,19 +90,19 @@ instruction:
 
     | TOURNE GAUCHE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<<" tourne à gauche "<<$3<<" fois"<<std::endl;
-       
+       driver.tourne(direction::GAUCHE,$5,$3);
     } 
     | TOURNE DROITE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<< " tourne à droite "<<$3<<" fois"<<std::endl;
-
+        driver.tourne(direction::DROITE,$5,$3);
     } 
     | RECULE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
-
+        driver.avance($4,-$2);
     }  
     | AVANCE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
-        
+        driver.avance($4,-$2);
 
     } 
    
