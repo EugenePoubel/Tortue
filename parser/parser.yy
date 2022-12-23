@@ -79,6 +79,9 @@ programme:
     //mise en forme d'une condition
 
 cond:
+    //dans chaque bloc normalement création d'un objet condition 
+    //avec le jardin et la condition en paramètre
+    //pour calculer ensuite si la condition et réalisale ou non 
     IF MUR dir ':' NL instruction NL FIN{
         
     } 
@@ -104,7 +107,7 @@ instruction:
         $$=$1;
     }
 
-    
+
 tourner:
 
     //deplacement sur toutes les tortues
