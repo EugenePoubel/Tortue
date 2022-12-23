@@ -13,7 +13,7 @@ Tortue::Tortue(int x, int y):posX(x),posY(y),width(35),height(35),orientation(0)
 Tortue::~Tortue(){
 }
 
-int Tortue::getX(){
+int Tortue::getX(){,,
 	return posX;
 }
 
