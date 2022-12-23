@@ -35,7 +35,7 @@ using token = yy::Parser::token;
     return token::NUMBER;
 }
 
-[0-9][0-9][0-9][0-9][0-9][0-9]  {
+[0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F]  {
     return token::HEX;
 }
 
