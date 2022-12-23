@@ -35,6 +35,10 @@ using token = yy::Parser::token;
     return token::NUMBER;
 }
 
+[0-9][0-9][0-9][0-9][0-9][0-9]  {
+    return token::HEX;
+}
+
 "\n"          {
     loc->lines();
     return token::NL;
@@ -106,6 +110,8 @@ using token = yy::Parser::token;
 "motif"     {
     return token::MOTIF;
 }
+
+
 
 [ \t]+          {
     

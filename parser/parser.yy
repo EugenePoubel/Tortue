@@ -53,6 +53,7 @@
 %token                  CARAPACE
 %token                  MOTIF
 %token                  COULEUR
+%token                  HEX
 %type <int>             mouvement
 %type <int>             exp
 %type <direction>       dir
@@ -74,11 +75,11 @@ programme:
 
 coul:
 
-    COULEUR CARAPACE '#'mouvement{
+    COULEUR CARAPACE '#'HEX{
 
     }
     |
-    COULEUR MOTIF '#'mouvement{
+    COULEUR MOTIF '#'HEX{
 
     }
 
