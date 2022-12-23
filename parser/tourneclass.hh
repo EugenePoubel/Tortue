@@ -13,8 +13,6 @@ private:
 public:
     tourneClass(JardinRendering* J);
     ~tourneClass();
-    int getO() const { return o; }
-    int getNum() const { return _num ;}
     float Orientation(int i);
     direction Direction(id _id);
     void tournerClass::tourneTout(direction d, int nbFois = 1);
