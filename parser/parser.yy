@@ -100,6 +100,8 @@ cond:
 
 
 instruction:    
+    //Instruction aurait du servir à séparer avancer et tourner
+    //pour le calcul dans condition 
     tourner {
         $$=$1;
     }
