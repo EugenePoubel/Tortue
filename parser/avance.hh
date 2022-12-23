@@ -18,5 +18,6 @@ public:
     void avanceTout(int nbFois = 1);
 
 };
+#endif
 
 
