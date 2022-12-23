@@ -1,8 +1,8 @@
 #include "instruction.hh"
-
-instruction::instruction(JardinRendering* J)
+int modulo(int a, int b) { return (a % b + b) % b; }; // Le calcul % initial dans C++ rend un résultat incorrect mathématiquement dans les négatif
+instruction::instruction(JardinRendering* _J)
 {
-    J=J;
+    J =_J;
 }
 
 float instruction::Orientation(int i)
@@ -45,12 +45,6 @@ void instruction::tourneTout(direction d, int nbFois = 1)
         tourne(d, i, nbFois);
     }
 }
-
-instruction::avance(JardinRendering* J)
-{
-    J=J;
-}
-
 float instruction::getX(id _id)
 {
     return J->getTortues()[_id]->getX();
@@ -61,7 +55,7 @@ float instruction::getY(id _id)
     return J->getTortues()[_id]->getY();
 }
 
-void instruction::avancer(id _id, int nbFois = 1)
+void instruction::avance(id _id, int nbFois = 1)
 {
     switch (static_cast<int>(Orientation(_id)))
     {
@@ -84,7 +78,7 @@ void instruction::avancer(id _id, int nbFois = 1)
 
 void instruction::avanceTout(int nbFois = 1)
 {
-    for (short i = 0; i < J->nombreTortues(); i++)
+    for (id i = 0; i < J->nombreTortues(); i++)
     {
         avance(nbFois, i);
     }

@@ -3,8 +3,6 @@
 #include <stdexcept>
 #include <iostream>
 
-int modulo(int a, int b) { return (a % b + b) % b; }; // Le calcul % initial dans C++ rend un résultat incorrect mathématiquement dans les négatif
-
 Driver::Driver(JardinHandler *J)
 {
     monJardin = J;

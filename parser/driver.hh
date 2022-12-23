@@ -11,7 +11,6 @@
 
 class JardinHandler;
 class JardinRendering;
-
 class Driver {
 private:      
     JardinHandler * monJardin;

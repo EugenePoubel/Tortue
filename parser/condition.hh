@@ -3,7 +3,7 @@
 
 #include "jardinRendering.hh"
 #include "avance.hh"
-#include "tourneclass.hh"
+#include "instruction.hh"
 #include <stdexcept>
 #include <iostream>
 
@@ -16,9 +16,12 @@ private:
 
 public:
     condition(JardinRendering* J);
-    ~condition();
+    ~condition()=default;
     bool Mur(direction d, id _id);
     bool Vide(direction d, id _id);
+    float getX(id _id);
+    float getY(id _id);
+    float Orientation(int i);
 
 };
 

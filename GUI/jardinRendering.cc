@@ -1,6 +1,5 @@
 #include "jardinRendering.hh"
 #include <fstream>
-
 JardinRendering::JardinRendering(QObject *parent) : QObject(parent)
 {
         
