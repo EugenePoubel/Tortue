@@ -67,6 +67,34 @@ using token = yy::Parser::token;
     return token::TOURNE;
 }
 
+"si"    {
+    return token::IF;
+}
+
+"mur"   {
+    return token::MUR;
+}
+
+"vide"  {
+    return token::VIDE;
+}
+
+"devant"    {
+    return token::DEVANT;
+}
+
+"derriere"  {
+    return token::DERRIERE;
+}
+
+"fin si"    {
+    return token::FIN;
+}
+
+"sinon"     {
+    return token::ELSE;
+}
+
 [ \t]+          {
     
 }
@@ -77,5 +105,5 @@ using token = yy::Parser::token;
 "/" return '/';
 "(" return '(';
 ")" return ')';
-
+":" return ':';
 %%
