@@ -15,9 +15,7 @@
     #include "tourneclass.hh"
     #include "constante.hh"
     #include "variable.hh"
-    #include "avance.hh"
-    #include "tourneclass.hh"
-    #incliude "condition.hh"
+    #include "instruction.hh"
     
     class Scanner;
     class Driver;
@@ -56,9 +54,9 @@
 %token                  ELSE
 %type <int>             mouvement
 %type <int>             exp
-%type <std::shared_ptr<tourneClass>> instruction
-%type <std::shared_ptr<tourneClass>> tourner
-%type <std::shared_ptr<avance>> avancer
+%type <std::shared_ptr<instruction>> instruction
+%type <std::shared_ptr<instruction>> tourner
+%type <std::shared_ptr<instruction>> avancer
 %type <direction>       dir
 
 %left '+'
@@ -115,14 +113,14 @@ tourner:
     //deplacement sur toutes les tortues
     TOURNE dir mouvement {
         std::cout << "tourne à gauche/droite "<<$3<<" fois"<<std::endl;
-        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new tourneClass(driver.getJardin()));
         $$->tournerTout($2,$3);
     }
         //deplacement sur une tortue
 
     | TOURNE dir mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<<" tourne à gauche/droite "<<$3<<" fois"<<std::endl;
-        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new tourneClass(driver.getJardin()));
         $$->tourner($2,$5,$3);
     } 
 
@@ -132,13 +130,13 @@ avancer:
 
     RECULE mouvement {
         std::cout << "reculer de "<<$2 <<std::endl;
-        $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new avance(driver.getJardin()));
         $$->avanceTout(-$2);
 
     }  
     | AVANCE mouvement{
         std::cout << "avance de "<<$2 <<std::endl;
-        $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new avance(driver.getJardin()));
         $$->avanceTout($2);
 
     }
@@ -146,12 +144,12 @@ avancer:
 
     | RECULE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
-        $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new avance(driver.getJardin()));
         $$->avancer($4,-$2);
     }  
     | AVANCE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
-        $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
+        $$ = std::shared_ptr<instruction>(new avance(driver.getJardin()));
         $$->avancer($4,$2);
 
     }
