@@ -8,6 +8,13 @@
 #include <QSize>
 #include "contexte.hh"
 
+enum class direction{
+    GAUCHE   = -90,
+    DERRIERE = 180,
+    DEVANT   = 0,
+    DROITE   = 90
+};
+
 class JardinHandler;
 class JardinRendering;
 
