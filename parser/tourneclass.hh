@@ -1,6 +1,6 @@
 #ifndef TOURNECLASS_H
 #define TOURNECLASS_H
-#include "jardinHandler.hh"
+#include "jardinRendering.hh"
 #include <stdexcept>
 #include <iostream>
 
