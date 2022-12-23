@@ -14,6 +14,7 @@
     #include "expressionUnaire.hh"
     #include "constante.hh"
     #include "variable.hh"
+    #include "driver.hh"
     
     class Scanner;
     class Driver;
@@ -27,7 +28,6 @@
     #include <string>
     
     #include "scanner.hh"
-    #include "driver.hh"
 
     #undef  yylex
     #define yylex scanner.yylex
@@ -105,13 +105,13 @@ tourner:
     //deplacement sur toutes les tortues
     TOURNE dir mouvement {
         std::cout << "tourne à gauche/droite "<<$3<<" fois"<<std::endl;
-        driver.tournerTout($2,$3);
+        driver.tourneTout($2,$3);
     }
         //deplacement sur une tortue
 
     | TOURNE dir mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$5<<" tourne à gauche/droite "<<$3<<" fois"<<std::endl;
-        driver.tourne($2,$5,$3);
+        driver.tourne($2,$5-1,$3);
     } 
 
 avancer:

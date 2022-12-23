@@ -78,13 +78,13 @@ void Driver::avance(id _id, int nbFois = 1)
     switch (static_cast<int>(Orientation(_id)))
     {
     case 0:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) + nbFois);
+        getJardin()->changePosition(_id, getX(_id), getY(_id) - nbFois);
         break;
     case 90:
         getJardin()->changePosition(_id, getX(_id) + nbFois, getY(_id));
         break;
     case 180:
-        getJardin()->changePosition(_id, getX(_id), getY(_id) - nbFois);
+        getJardin()->changePosition(_id, getX(_id), getY(_id) + nbFois);
         break;
     case 270:
         getJardin()->changePosition(_id, getX(_id) - nbFois, getY(_id));
@@ -92,6 +92,7 @@ void Driver::avance(id _id, int nbFois = 1)
     default:
         break;
     }
+    std::cout<<"("<<getX(_id)<<" "<<getY(_id)<<")";
 }
 
 void Driver::avanceTout(int nbFois = 1)
@@ -103,13 +104,13 @@ void Driver::avanceTout(int nbFois = 1)
 }
 
 void Driver::tourne(direction d, id _id, int nbFois = 1)
-{
+{   
     getJardin()->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * nbFois), 360));
 }
 
 void Driver::tourneTout(direction d, int nbFois = 1)
 {
-    for (int i = 0; i < getJardin()->nombreTortues(); i++)
+    for (id i = 0; i < getJardin()->nombreTortues(); i++)
     {
         tourne(d, i, nbFois);
     }
@@ -159,4 +160,28 @@ bool Driver::Vide(direction d, id _id)
         break;
     }
     throw std::invalid_argument("Erreur Orientation invalide");
+
+}
+
+int hexadecimalToDecimal(std::string n) { return std::stoi(n, 0, 16); }
+
+void Driver::setCouleursCarapace(std::string r,std::string g,std::string b){
+    int newR = hexadecimalToDecimal(r);
+    int newG = hexadecimalToDecimal(g);
+    int newB = hexadecimalToDecimal(b);
+    for (short i = 0; i < getJardin()->nombreTortues(); i++)
+    {
+        getJardin()->changeCouleurCarapace(i,newR,newG,newB);
+    }
+}
+
+void Driver::setCouleursMotif(std::string r,std::string g,std::string b){
+    int newR = hexadecimalToDecimal(r);
+    int newG = hexadecimalToDecimal(g);
+    int newB = hexadecimalToDecimal(b);
+    for (short i = 0; i < getJardin()->nombreTortues(); i++)
+    {
+        getJardin()->changeCouleurCarapace(i,newR,newG,newB);
+    }
+    
 }

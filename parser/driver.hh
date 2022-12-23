@@ -37,6 +37,8 @@ public:
     void tourne(direction d,id _id, int nbFois);
     bool Mur(direction d, id _id);
     bool Vide(direction d, id _id);
+    void setCouleursCarapace(std::string r,std::string g,std::string b);
+    void setCouleursMotif(std::string r,std::string g,std::string b);
 };
 #endif
 
