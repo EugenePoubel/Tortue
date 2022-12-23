@@ -35,6 +35,10 @@ using token = yy::Parser::token;
     return token::NUMBER;
 }
 
+[0-9a-fA-F][0-9a-fA-F] {
+    return token::HEX;
+}
+
 "\n"          {
     loc->lines();
     return token::NL;
@@ -95,6 +99,20 @@ using token = yy::Parser::token;
     return token::ELSE;
 }
 
+"couleur"   {
+    return token::COULEUR;
+}
+
+"carapace"  {
+    return token::CARAPACE;
+}
+
+"motif"     {
+    return token::MOTIF;
+}
+
+
+
 [ \t]+          {
     
 }
@@ -106,4 +124,5 @@ using token = yy::Parser::token;
 "(" return '(';
 ")" return ')';
 ":" return ':';
+"#" return '#';
 %%
