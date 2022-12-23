@@ -101,6 +101,7 @@ void Driver::avanceTout(int nbFois = 1)
         avance(nbFois, i);
     }
 }
+/*
 
 void Driver::tourne(direction d, id _id, int nbFois = 1)
 {
@@ -116,6 +117,7 @@ void Driver::tourneTout(direction d, int nbFois = 1)
 }
 using coord = float; /*Les coordonnées sont des flottant Nous aurions aussi pu avoir un unsigned int ou un
                     short unsigned int*/
+                    
 
 bool Driver::Mur(direction d, id _id)
 {
