@@ -53,7 +53,7 @@
 %token                  CARAPACE
 %token                  MOTIF
 %token                  COULEUR
-%token                  HEX
+%token <string>         HEX
 %type <int>             mouvement
 %type <int>             exp
 %type <direction>       dir
@@ -76,12 +76,12 @@ programme:
     //mise en forme changement des couleurs
 coul:
 
-    COULEUR CARAPACE '#'HEX HEX HEX{
-
+    COULEUR CARAPACE '#' HEX HEX HEX{
+        driver.setCouleursCarapace($4,$5,$6);
     }
     |
-    COULEUR MOTIF '#'HEX HEX HEX{
-
+    COULEUR MOTIF '#' HEX HEX HEX{
+        driver.setCouleursMotif($4,$5,$6);
     }
 
 
