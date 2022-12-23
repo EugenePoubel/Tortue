@@ -14,7 +14,7 @@ public:
     ~avance();
     float getX(id _id);
     float getY(id _id);
-    void avance(id _id, int nbFois = 1);
+    void avancer(id _id, int nbFois = 1);
     void avanceTout(int nbFois = 1);
 
 };

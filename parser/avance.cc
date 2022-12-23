@@ -15,7 +15,7 @@ float avance::getY(id _id)
     return J->getTortues()[_id]->getY();
 }
 
-void avance::avance(id _id, int nbFois = 1)
+void avance::avancer(id _id, int nbFois = 1)
 {
     switch (static_cast<int>(Orientation(_id)))
     {

@@ -107,12 +107,12 @@ instruction:
     | RECULE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
         $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
-        $$->avance($4,-$2);
+        $$->avancer($4,-$2);
     }  
     | AVANCE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
         $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
-        $$->avance($4,$2);
+        $$->avancer($4,$2);
 
     }
 
