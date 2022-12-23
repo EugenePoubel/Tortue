@@ -16,7 +16,7 @@ public:
     int getO() const { return o; }
     int getNum() const { return _num ;}
     void tournerTortue(int x,int num);
-    float Orientation(int i)
+    float Orientation(int i);
 };
 
 #endif
