@@ -101,7 +101,7 @@ void Driver::avanceTout(int nbFois = 1)
         avance(nbFois, i);
     }
 }
-/*
+
 
 void Driver::tourne(direction d, id _id, int nbFois = 1)
 {
