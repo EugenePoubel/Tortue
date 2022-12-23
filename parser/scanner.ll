@@ -95,6 +95,18 @@ using token = yy::Parser::token;
     return token::ELSE;
 }
 
+"couleur"   {
+    return token::COULEUR;
+}
+
+"carapace"  {
+    return token::CARAPACE;
+}
+
+"motif"     {
+    return token::MOTIF;
+}
+
 [ \t]+          {
     
 }
@@ -106,4 +118,5 @@ using token = yy::Parser::token;
 "(" return '(';
 ")" return ')';
 ":" return ':';
+"#" return '#';
 %%

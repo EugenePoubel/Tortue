@@ -50,6 +50,9 @@
 %token                  DERRIERE
 %token                  FIN
 %token                  ELSE
+%token                  CARAPACE
+%token                  MOTIF
+%token                  COULEUR
 %type <int>             mouvement
 %type <int>             exp
 %type <direction>       dir
@@ -63,10 +66,22 @@
 programme:
       instruction NL programme
     | cond NL programme
+    | coul NL programme
     | END NL 
     {
         YYACCEPT;
     }
+
+coul:
+
+    COULEUR CARAPACE '#'mouvement{
+
+    }
+    |
+    COULEUR MOTIF '#'mouvement{
+
+    }
+
 
     //mise en forme d'une condition
 
