@@ -4,6 +4,12 @@
 #include <stdexcept>
 #include <iostream>
 
+enum class direction{
+    GAUCHE   = -90,
+    DERRIERE = 180,
+    DEVANT   = 0,
+    DROITE   = 90
+};
 
 using id = short;
 using coord = float; /*Les coordonnées sont des flottant Nous aurions aussi pu avoir un unsigned int ou un

@@ -17,6 +17,7 @@
     #include "variable.hh"
     #include "avance.hh"
     #include "tourneclass.hh"
+    #incliude "condition.hh"
     
     class Scanner;
     class Driver;
@@ -46,9 +47,19 @@
 %token                  FOIS
 %token                  TOURNE
 %token                  AT
+%token                  VIDE
+%token                  MUR
+%token                  IF
+%token                  DEVANT
+%token                  DERRIERE
+%token                  FIN
+%token                  ELSE
 %type <int>             mouvement
 %type <int>             exp
 %type <std::shared_ptr<tourneClass>> instruction
+%type <std::shared_ptr<tourneClass>> tourner
+%type <std::shared_ptr<avance>> avancer
+%type <direction>       dir
 
 %left '+'
 %left '*'
@@ -58,28 +69,63 @@
 %%
 
 programme:
-    instruction NL programme
-    | END NL {
+      instruction NL programme
+    | cond NL programme
+    | END NL 
+    {
         YYACCEPT;
     }
 
-    //déplacement 
+    //mise en forme d'une condition
+
+cond:
+    IF MUR dir ':' NL instruction NL FIN{
+        
+    } 
+    |
+    IF MUR dir ':' NL instruction NL ELSE ':' NL FIN{
+
+    } 
+    |
+    IF VIDE dir ':' NL instruction NL FIN{
+        
+    }
+    |
+    IF VIDE dir ':' NL instruction NL ELSE ':' NL FIN{
+        
+    }
+
 
 instruction:    
+    tourner {
+        $$=$1;
+    }
+    | avancer{
+        $$=$1;
+    }
+
+    
+tourner:
 
     //deplacement sur toutes les tortues
-    TOURNE GAUCHE mouvement {
-        std::cout << "tourne à gauche "<<$3<<" fois"<<std::endl;
+    TOURNE dir mouvement {
+        std::cout << "tourne à gauche/droite "<<$3<<" fois"<<std::endl;
         $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
-        $$->tournerTout(direction::GAUCHE,$3);
+        $$->tournerTout($2,$3);
     }
-    | TOURNE DROITE mouvement {
-        std::cout << "tourne à droite "<<$3<<" fois"<<std::endl;
-        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
-        $$->tournerTout(direction::DROITE,$3);
+        //deplacement sur une tortue
 
-    }  
-    | RECULE mouvement {
+    | TOURNE dir mouvement AT NUMBER {
+        std::cout <<"tortue numéro "<<$5<<" tourne à gauche/droite "<<$3<<" fois"<<std::endl;
+        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
+        $$->tourner($2,$5,$3);
+    } 
+
+avancer:
+
+        //deplacement sur toutes les tortues
+
+    RECULE mouvement {
         std::cout << "reculer de "<<$2 <<std::endl;
         $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
         $$->avanceTout(-$2);
@@ -91,19 +137,8 @@ instruction:
         $$->avanceTout($2);
 
     }
+        //deplacement sur une tortue
 
-    //deplacement sur une tortue
-
-    | TOURNE GAUCHE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$5<<" tourne à gauche "<<$3<<" fois"<<std::endl;
-        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
-        $$->tourner(direction::GAUCHE,$5,$3);
-    } 
-    | TOURNE DROITE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$5<< " tourne à droite "<<$3<<" fois"<<std::endl;
-        $$ = std::shared_ptr<tourneClass>(new tourneClass(driver.getJardin()));
-        $$->tourner(direction::GAUCHE,$5,$3);
-    } 
     | RECULE mouvement AT NUMBER {
         std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
         $$ = std::shared_ptr<avance>(new avance(driver.getJardin()));
@@ -116,49 +151,25 @@ instruction:
 
     }
 
-    //deplacement sur toutes les tortues
-/*
-     TOURNE GAUCHE mouvement {
-        std::cout << "tourne à gauche "<<$3<<" fois"<<std::endl;
-        driver.tourneTout(direction::GAUCHE,$3);
-       
-    } 
-    | TOURNE DROITE mouvement {
-        std::cout << "tourne à droite "<<$3<<" fois"<<std::endl;
-        driver.tourneTout(direction::DROITE,$3);
+   //choix de la direction
 
-    }  
-    | RECULE mouvement {
-        std::cout << "reculer de "<<$2 <<std::endl;
-        driver.avanceTout(-$2);
-
-    }  
-    | AVANCE mouvement{
-        std::cout << "avance de "<<$2 <<std::endl;
-        driver.avanceTout($2);
-
+dir:
+    GAUCHE {
+        $$=direction::GAUCHE;
+    }
+    |
+    DROITE {
+        $$=direction::DROITE;
+    }
+    |
+    DEVANT {
+        $$=direction::DEVANT;
+    }
+    |
+    DERRIERE{
+        $$=direcetion::DERRIERE;
     }
 
-    //deplacement sur une tortue
-
-    | TOURNE GAUCHE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$5<<" tourne à gauche "<<$3<<" fois"<<std::endl;
-       driver.tourne(direction::GAUCHE,$5,$3);
-    } 
-    | TOURNE DROITE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$5<< " tourne à droite "<<$3<<" fois"<<std::endl;
-        driver.tourne(direction::DROITE,$5,$3);
-    } 
-    | RECULE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$4<< " reculer de "<<$2<<std::endl;
-        driver.avance($4,-$2);
-    }  
-    | AVANCE mouvement AT NUMBER {
-        std::cout <<"tortue numéro "<<$4<< " avance de "<<$2<<std::endl;
-        driver.avance($4,-$2);
-
-    } */
-   
     //mise en forme d'un mouvement 
 
 mouvement:
