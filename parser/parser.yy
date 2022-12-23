@@ -73,6 +73,7 @@ programme:
         YYACCEPT;
     }
 
+    //mise en forme changement des couleurs
 coul:
 
     COULEUR CARAPACE '#'HEX HEX HEX{
