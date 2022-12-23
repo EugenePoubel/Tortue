@@ -12,6 +12,7 @@
     #include "contexte.hh"
     #include "expressionBinaire.hh"
     #include "expressionUnaire.hh"
+    #include "tourneclass.hh"
     #include "constante.hh"
     #include "variable.hh"
     #include "avance.hh"
