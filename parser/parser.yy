@@ -75,11 +75,11 @@ programme:
 
 coul:
 
-    COULEUR CARAPACE '#'HEX{
+    COULEUR CARAPACE '#'HEX HEX HEX{
 
     }
     |
-    COULEUR MOTIF '#'HEX{
+    COULEUR MOTIF '#'HEX HEX HEX{
 
     }
 
