@@ -23,7 +23,7 @@ public:
     ~tourneClass();
     float Orientation(int i);
     direction Direction(id _id);
-    void tournerClass::tourneTout(direction d, int nbFois = 1);
+    void tourneTout(direction d, int nbFois = 1);
     void tourne(direction d, id _id, int nbFois = 1);
 
 };

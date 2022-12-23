@@ -33,6 +33,11 @@ direction tourneClass::Direction(id _id)
     }
 }
 
+void tournerCLass::tourne(direction d, id _id, int nbFois = 1)
+{
+    J->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * nbFois), 360));
+}
+
 void tournerClass::tourneTout(direction d, int nbFois = 1)
 {
     for (int i = 0; i < J->nombreTortues(); i++)
@@ -41,7 +46,4 @@ void tournerClass::tourneTout(direction d, int nbFois = 1)
     }
 }
 
-void tournerCLass::tourne(direction d, id _id, int nbFois = 1)
-{
-    J->getTortues()[_id]->setOrientation(modulo((static_cast<int>(Orientation(_id)) + static_cast<int>(d) * nbFois), 360));
-}
+
