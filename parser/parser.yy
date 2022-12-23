@@ -17,7 +17,7 @@
     #include "variable.hh"
     #include "avance.hh"
     #include "tourneclass.hh"
-    #incliude "condition.hh"
+    #include "condition.hh"
     
     class Scanner;
     class Driver;
@@ -103,10 +103,11 @@ instruction:
     //Instruction aurait du servir à séparer avancer et tourner
     //pour le calcul dans condition 
     tourner {
-        $$=$1;
+        $$ = $1;
+        
     }
     | avancer{
-        $$=$1;
+        $$ = $1;
     }
 
 
