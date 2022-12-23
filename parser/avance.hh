@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <iostream>
 
+using id = short;
+
 class avance
 {
 private:
