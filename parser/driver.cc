@@ -98,7 +98,7 @@ void Driver::avanceTout(int nbFois = 1)
 {
     for (short i = 0; i < getJardin()->nombreTortues(); i++)
     {
-        avance(nbFois, i);
+        avance(i,nbFois);
     }
 }
 
