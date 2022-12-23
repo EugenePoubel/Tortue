@@ -17,10 +17,10 @@ private:
 public:
     condition(JardinRendering* J);
     ~condition();
-    bool Mur(direction d, id _id)
-    bool Vide(direction d, id _id)
+    bool Mur(direction d, id _id);
+    bool Vide(direction d, id _id);
 
 };
 
-
+#endif
 

@@ -101,10 +101,11 @@ instruction:
     //Instruction aurait du servir à séparer avancer et tourner
     //pour le calcul dans condition 
     tourner {
-        $$=$1;
+        $$ = $1;
+        
     }
     | avancer{
-        $$=$1;
+        $$ = $1;
     }
 
 
